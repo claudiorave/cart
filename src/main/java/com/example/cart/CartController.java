@@ -1,7 +1,7 @@
 package com.example.cart;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import javax.persistence.*;
+
+
+
 
 @RestController
 class CartController {
@@ -22,30 +29,34 @@ class CartController {
 		this.repositoryP = repositoryP;
 	}
 
-	// Aggregate root
+	// All 
 
 	@GetMapping("/products")
-	List<Product> all() {
+	List<Product> allProducts() {
 		return repositoryP.findAll();
 	}
 
 	@PostMapping("/cart/products")
-	Product newEmployee(@RequestBody Product newProduct) {
+	Product newProduct(@RequestBody Product newProduct) {
 		return repositoryP.save(newProduct);
 	}
 
 	// Single item
-
+	
 	@GetMapping("/products/{id}")
-	Optional<Product> one(@PathVariable Long id) {
-
-		return repositoryP.findById(id);
+	ResponseEntity getProduct(@PathVariable Long id) {
+		//Not working as expected, findById returns null if Id is wrong. No exception thrown. 
+		try {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(repositoryP.findById(id)); 
+		}
+		catch(NoResultException E) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
 	}
 
 
 
 	@DeleteMapping("/cart/{id}")
 	void deleteCart(@PathVariable Long id) {
-	
 	}
 }

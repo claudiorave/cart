@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Data
+@Data //AUTO-GENERATES GETTERS, SETTERS
 @Entity
 class Product {
 
@@ -17,9 +17,7 @@ class Product {
 	private Double price;
 	
 	public Product() {
-		this.id = null;
-		this.title = "";
-		this.price = null;
+		super();
 	}
 	
 	public Product(Long id, String title, Double price) {

@@ -17,7 +17,8 @@ public class Cart {
 	private boolean finished=false;
 	private double price;
 	
-	public double sumProducts(ArrayList<Product> productList) {
+
+	public double sumProducts(ArrayList<Product> productList) { 
 	    double sum = 0;
 	    for (int i = 0; i < productList.size(); i++) {
 	        Product product = productList.get(i);
@@ -26,22 +27,25 @@ public class Cart {
 	    return sum;
 	}
 
+	public Cart() {
+		super();
+	}
+	
+	
 	Cart(ArrayList<Product> productList) {
 		this.productList = productList;
 		this.price = sumProducts(productList);
 	}
 	
 	public void addProduct(Product product){
-	
+		productList.add(product);
 	}
 	
 	public void deleteProduct(int productId) {
+		
 			
 	}
 	
-	public void deleteCart() {
-		
-	}
 	
 	public void checkout() {
 		
