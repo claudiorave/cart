@@ -10,13 +10,23 @@ import javax.persistence.Id;
 @Entity
 class Product {
 
+
+
 	private @Id Long id;
 	private String title;
 	private Double price;
-
-	public Product(Long id, String title, double price) {
+	
+	public Product() {
+		this.id = null;
+		this.title = "";
+		this.price = null;
+	}
+	
+	public Product(Long id, String title, Double price) {
+		super();
 		this.id = id;
 		this.title = title;
 		this.price = price;
 	}
-}
+	
+	}

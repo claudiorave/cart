@@ -2,6 +2,6 @@ package com.example.cart;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface CartRepository extends JpaRepository<Cart, Long> {
+interface ProductRepository extends JpaRepository<Product, Long> {
 
 }

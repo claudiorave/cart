@@ -1,4 +1,4 @@
-package com.example.employee;
+package com.example.cart;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeApplicationTests {
+public class CartApplicationTests {
 
 	@Test
 	public void contextLoads() {

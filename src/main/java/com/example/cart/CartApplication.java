@@ -26,9 +26,9 @@ public class CartApplication {
 		ObjectMapper mapper = new ObjectMapper();
 		URL jsonUrl = new URL("http://challenge.getsandbox.com/articles");
 		try {
-			ArrayList data = mapper.readValue(jsonUrl, ArrayList.class);
+			List<Product> data = mapper.readValue(jsonUrl,  new TypeReference<List<Product>>(){});
 		
-			CartApplication.log.info("Products:" + data.get(3));
+			CartApplication.log.info("Products:" + data.get(3).getTitle());
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

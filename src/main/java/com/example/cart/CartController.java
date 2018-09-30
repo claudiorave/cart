@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 class CartController {
 
-	private final CartRepository repository;
+	private final CartRepository repositoryC;
+	private final ProductRepository repositoryP;
 
-	CartController(CartRepository repository) {
-		this.repository = repository;
+	CartController(CartRepository repositoryC, ProductRepository repositoryP) {
+		this.repositoryC = repositoryC;
+		this.repositoryP = repositoryP;
 	}
 
 	// Aggregate root
 
 	@GetMapping("/products")
 	List<Product> all() {
-		return repository.findAll();
+		return repositoryP.findAll();
 	}
 
-	@PostMapping("/products")
-	Product newEmployee(@RequestBody Product newEmployee) {
-		return repository.save(newEmployee);
+	@PostMapping("/cart/products")
+	Product newEmployee(@RequestBody Product newProduct) {
+		return repositoryP.save(newProduct);
 	}
 
 	// Single item
@@ -37,26 +39,13 @@ class CartController {
 	@GetMapping("/products/{id}")
 	Optional<Product> one(@PathVariable Long id) {
 
-		return repository.findById(id);
+		return repositoryP.findById(id);
 	}
 
-	@PutMapping("/employees/{id}")
-	Product replaceEmployee(@RequestBody Product newEmployee, @PathVariable Long id) {
 
-		return repository.findById(id)
-			.map(product -> {
-				product.setTitle(newEmployee.getTitle());
-				product.setPrice(newEmployee.getPrice());
-				return repository.save(product);
-			})
-			.orElseGet(() -> {
-				newEmployee.setId(id);
-				return repository.save(newEmployee);
-			});
-	}
 
-	@DeleteMapping("/employees/{id}")
-	void deleteEmployee(@PathVariable Long id) {
-		repository.deleteById(id);
+	@DeleteMapping("/cart/{id}")
+	void deleteCart(@PathVariable Long id) {
+	
 	}
 }
