@@ -1,13 +1,10 @@
-package com.example.cart;
+package com.example.cart.Resources;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
-@Entity
 public class CartDTO {
 	private @Id Long id;
 	private double price;

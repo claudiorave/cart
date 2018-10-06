@@ -1,5 +1,6 @@
-package com.example.cart;
+package com.example.cart.Services;
 
+import com.example.cart.Resources.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.cart.Resources.Product;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class ItemsService {
 	public static ObjectMapper mapper = new ObjectMapper();
-	static ArrayList<Product> products;
+	private ArrayList<Product> products;
 	public static URL jsonUrl;
 
 	public ItemsService() {
@@ -45,6 +47,12 @@ public class ItemsService {
 
 	public ArrayList<Product> getAllItems() {
 		return products;
+
+	}
+
+	public double getPriceById(Long productId) {
+		Product prod = getItem(productId);
+		return prod.getPrice();
 
 	}
 

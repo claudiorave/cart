@@ -1,18 +1,17 @@
-package com.example.cart;
+package com.example.cart.Resources;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data // AUTO-GENERATES GETTERS, SETTERS
+@Data
 @Entity
-class Product {
+public class Product {
 
 	private @Id Long id;
 	private String title;
 	private Double price;
-	private int quantity = 0;
 
 	public Product() {
 		super();
@@ -23,10 +22,6 @@ class Product {
 		this.id = id;
 		this.title = title;
 		this.price = price;
-	}
-
-	public void addQuantity(int n) {
-		this.quantity += n;
 	}
 
 }

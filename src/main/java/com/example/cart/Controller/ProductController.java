@@ -1,6 +1,10 @@
-package com.example.cart;
+package com.example.cart.Controller;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.example.cart.Resources.Product;
+import com.example.cart.Services.ItemsService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
