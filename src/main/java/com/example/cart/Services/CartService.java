@@ -1,7 +1,9 @@
 package com.example.cart.Services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
 
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,10 @@ public class CartService {
 	}
 
 	public Cart addNewCart(ArrayList<ProductPurchase> productPurchase) {
+		
 		Cart cart = new Cart(productPurchase);
 		return repository.save(cart);
+	
 	}
 
 	public boolean deleteCart(Long Id) {

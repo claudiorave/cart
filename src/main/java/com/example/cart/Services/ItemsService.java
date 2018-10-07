@@ -55,5 +55,17 @@ public class ItemsService {
 		return prod.getPrice();
 
 	}
+	public List<ProductPurchase> toEntity(List<ProductPurchaseDTO> listDTO){
+		List<ProductPurchase> productPurchaseList = new ArrayList(); 
+			listDTO.forEach((p)-> {
+				Product prod = this.getItem(p.getProductId());
+				if(prod != null){
+					ProductPurchase productPurchase = new ProductPurchase(prod, p.getQuantity());
+					productPurchaseList.add(productPurchase);
+				}
+						
+						});
+		return productPurchaseList;
+	}
 
 }

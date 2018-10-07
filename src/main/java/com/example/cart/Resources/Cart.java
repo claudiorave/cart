@@ -3,10 +3,14 @@ package com.example.cart.Resources;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 
 
@@ -14,12 +18,19 @@ import javax.persistence.Id;
 @Entity
 
 public class Cart {
+	
 	private @Id @GeneratedValue Long id;
-	private ArrayList<ProductPurchase> productPurchaseList;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name = "ppurchase")
+	private List<ProductPurchase> productPurchaseList = new ArrayList<ProductPurchase>();
 	private boolean finished = false;
 	private double price = 0.0;
 	
-	public Cart(ArrayList<ProductPurchase> productPurchase) {
+	public Cart() {
+		super();
+	}
+	
+	public Cart(List<ProductPurchase> productPurchase) {
 		this.productPurchaseList = productPurchase;
 		this.setPrice();
 	}
